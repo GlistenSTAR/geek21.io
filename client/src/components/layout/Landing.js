@@ -56,14 +56,14 @@ class Landing extends Component {
         </div>
         
         {this.state.show?(
-          <div className="down_botton">
+          <div className="down_botton" align="center">
             <i 
             className="fas fa-angle-double-down text-info" 
             style={{fontSize:'32px', animation: 'bounce 1s ease-in-out infinite'}}
           /></div>
           ):''}
         
-        <div className="contact_mobile">
+        <div className="contact_mobile" align="center">
           <button className="btn btn-outline-light mr-3"><i className="fab fa-apple mr-2 text-info" style={{fontSize:'32px', verticalAlign: 'bottom'}}></i>App Store</button>
           <button className="btn btn-outline-light"><i className="fab fa-google-play mr-2 text-info" style={{fontSize:'32px', verticalAlign: 'bottom'}}></i>App Store</button>
         </div>

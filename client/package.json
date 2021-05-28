@@ -3,17 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "4.10.0",
+    "@material-ui/icons": "4.9.1",
     "axios": "^0.21.1",
     "classnames": "^2.2.5",
-    "Greek21": "file:..",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.0",
+    "perfect-scrollbar": "^1.5.1",
     "react": "^16.3.1",
+    "react-chartist": "^0.14.4",
     "react-dom": "^16.3.1",
+    "react-google-maps": "^9.4.5",
     "react-moment": "^0.7.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^4.0.3",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
@@ -23,5 +27,17 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

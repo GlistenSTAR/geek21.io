@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
 
-import './navbar.scss'
-
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
@@ -79,25 +77,28 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <div className="container">
-          <Link className="navbar-brand display-5" to="/">
-            Greek21
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+      <div>
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+          <div className="container">
+            <Link className="navbar-brand display-5" to="/">
+              Greek21
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#mobile-nav"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
 
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            {isAuthenticated ? authLinks : guestLinks}
+            <div className="collapse navbar-collapse" id="mobile-nav">
+              {isAuthenticated ? authLinks : guestLinks}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+        <div className="pt-5 pb-5"></div>
+      </div>
     );
   }
 }
