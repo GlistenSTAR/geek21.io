@@ -10,7 +10,6 @@ import store from './store';
 
 import PrivateRoute from './components/common/PrivateRoute';
 
-import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
@@ -54,21 +53,21 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container root_container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/bitcoin" component={Bitcoin} />
-              <Route exact path="/products" component={Products} />
-              <Route exact path="/network" component={Network} />
-              <Route exact path="/invest" component={Invest} />
-              <Route exact path="/academy" component={Academy} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Route exact path="/not-found" component={NotFound} />
-            </div>
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/dashboard" component={Dashboard} />
+            </Switch>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/bitcoin" component={Bitcoin} />
+            <Route exact path="/products" component={Products} />
+            <Route exact path="/network" component={Network} />
+            <Route exact path="/invest" component={Invest} />
+            <Route exact path="/academy" component={Academy} />
+            <Route exact path="/not-found" component={NotFound} />
             <Footer />
           </div>
         </Router>

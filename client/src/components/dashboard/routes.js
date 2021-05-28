@@ -7,10 +7,44 @@ const dashboardRoutes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    rtlName: "لوحة القيادة",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
+    layout: "/dashboard"
+  },
+  {
+    path: "/iUSD_wallet",
+    name: "iUSD_WALLET",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/dashboard"
+  },
+  {
+    path: "/USDT_wallet",
+    name: "USDT_WALLET",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/dashboard"
+  },
+  {
+    path: "/bitcoin_wallet",
+    name: "BITCOIN WALLET",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/dashboard"
+  },
+  {
+    path: "/investments",
+    name: "INVESTMENTS",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/dashboard"
+  },
+  {
+    path: "/team",
+    name: "TEAM",
+    icon: Dashboard,
+    component: DashboardPage,
+    layout: "/dashboard"
   }
 ];
 
