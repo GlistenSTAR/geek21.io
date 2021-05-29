@@ -1,5 +1,6 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
+import Group from "@material-ui/icons/Group";
 // core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard.js";
 
@@ -42,7 +43,7 @@ const dashboardRoutes = [
   {
     path: "/team",
     name: "TEAM",
-    icon: Dashboard,
+    icon: Group,
     component: DashboardPage,
     layout: "/dashboard"
   }

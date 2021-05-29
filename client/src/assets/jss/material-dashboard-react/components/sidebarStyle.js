@@ -72,13 +72,11 @@ const sidebarStyle = theme => ({
       height: "1px",
       right: "15px",
       width: "calc(100% - 30px)",
-      backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
     }
   },
   logoLink: {
     ...defaultFont,
     textTransform: "uppercase",
-    padding: "5px 0",
     display: "block",
     fontSize: "18px",
     textAlign: "left",
@@ -90,19 +88,15 @@ const sidebarStyle = theme => ({
       color: whiteColor
     }
   },
-  logoLinkRTL: {
-    textAlign: "right"
-  },
   logoImage: {
-    width: "30px",
+    width: "200px",
     display: "inline-block",
-    maxHeight: "30px",
-    marginLeft: "10px",
-    marginRight: "15px"
+    maxHeight: "10px",
+    marginLeft:'0px'
   },
   img: {
-    width: "35px",
-    top: "22px",
+    width: "90%",
+    top: "10px",
     position: "absolute",
     verticalAlign: "middle",
     border: "0"

@@ -8,23 +8,6 @@ import dropdownStyle from "../../material-dashboard-react/dropdownStyle.js";
 
 const headerLinksStyle = theme => ({
   ...dropdownStyle(theme),
-  search: {
-    "& > div": {
-      marginTop: "0"
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: "10px 15px !important",
-      float: "none !important",
-      paddingTop: "1px",
-      paddingBottom: "1px",
-      padding: "0!important",
-      width: "60%",
-      marginTop: "40px",
-      "& input": {
-        color: whiteColor
-      }
-    }
-  },
   linkText: {
     zIndex: "4",
     ...defaultFont,

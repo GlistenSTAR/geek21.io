@@ -37,7 +37,7 @@ const iconsStyle = {
     textDecoration: "none",
     "& small": {
       color: grayColor[1],
-      fontWeight: "400",
+      fontWeight: "800",
       lineHeight: "1"
     }
   }

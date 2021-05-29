@@ -14,7 +14,7 @@ import routes from "../routes.js";
 
 import styles from "../../../assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
-import bgImage from "../../../assets/img/sidebar-3.jpg";
+import bgImage from "../../../img/showcase.jpg";
 import logo from "../logo_white.png";
 
 let ps;
@@ -22,7 +22,7 @@ let ps;
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/dashboard") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -33,7 +33,7 @@ const switchRoutes = (
       }
       return null;
     })}
-    <Redirect from="/admin" to="/admin/dashboard" />
+    <Redirect from="/dashboard" to="/dashboard/dashboard" />
   </Switch>
 );
 
@@ -47,9 +47,26 @@ export default function Admin({ ...rest }) {
   // states and functions
   const [image, setImage] = React.useState(bgImage);
   const [color, setColor] = React.useState("blue");
+  const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-    const handleDrawerToggle = () => {
+  const handleImageClick = image => {
+    setImage(image);
+  };
+  const handleColorClick = color => {
+    setColor(color);
+  };
+  const handleFixedClick = () => {
+    if (fixedClasses === "dropdown") {
+      setFixedClasses("dropdown show");
+    } else {
+      setFixedClasses("dropdown");
+    }
+  };
+  const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+  const getRoute = () => {
+    return window.location.pathname !== "/admin/maps";
   };
   const resizeFunction = () => {
     if (window.innerWidth >= 960) {
@@ -78,6 +95,7 @@ export default function Admin({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
+        logoText={""}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
@@ -91,7 +109,14 @@ export default function Admin({ ...rest }) {
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
         />
-        {/* <Footer /> */}
+        {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
+        {getRoute() ? (
+          <div className={classes.content}>
+            <div className={classes.container}>{switchRoutes}</div>
+          </div>
+        ) : (
+          <div className={classes.map}>{switchRoutes}</div>
+        )}
       </div>
     </div>
   );
