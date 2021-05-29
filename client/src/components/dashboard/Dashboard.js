@@ -6,7 +6,7 @@ import "../../assets/css/material-dashboard-react.css?v=1.9.0";
 class Dashboard extends Component {
   render() {
     return (
-     <div>
+     <div className="dashboard">
        <Admin />
      </div>
     );

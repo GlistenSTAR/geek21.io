@@ -10,8 +10,7 @@
     "client": "npm start --prefix client",
     "db": "start mongod --dbpath 'E:/projects/skype/geek21.io/geek21.io/geek21DB'",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run db\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Brad Traversy",
   "license": "MIT",

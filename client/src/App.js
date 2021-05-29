@@ -25,7 +25,6 @@ import Academy from './components/academy/Academy';
 
 import './App.css';
 
-
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -59,6 +58,21 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard/dashboard" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/iUSD_wallet" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/USDT_wallet" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/bitcoin_wallet" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/investments" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/team" component={Dashboard} />
             </Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
