@@ -20,7 +20,7 @@ const headerLinksStyle = theme => ({
       margin: "10px 15px 0",
       width: "-webkit-fill-available",
       "& svg": {
-        width: "24px",
+        width: "32px",
         height: "30px",
         marginRight: "15px",
         marginLeft: "-15px"

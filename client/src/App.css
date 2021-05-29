@@ -4,7 +4,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: url('./assets/img/showcase.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -81,8 +81,12 @@ nav.bg-dark{
   left:5%;
   z-index: 9999999999999999999;
 }
-
-
+.brand_img{
+  width: auto!important;
+}
+.profile_sidebar_text{
+  color: black;
+}
 @media (max-width: 881px){
   .down_botton{
     bottom:8%;
@@ -107,6 +111,9 @@ nav.bg-dark{
     font-size: 2.3em;
     /* margin-top: -40px; */
   }
+  .profile_sidebar_text{
+    color: white;
+  }
 }
 @media (max-width: 995px){
   nav .container{
@@ -120,4 +127,14 @@ nav.bg-dark{
   nav .navbar-nav {
     margin-right: 0px;
   }
+}
+
+
+.sidebar_icon{
+  width: 25px!important;
+  height: 25px!important;
+  margin-right: 15px;
+}
+.makeStyles-itemLink-15{
+  display: flex!important;
 }

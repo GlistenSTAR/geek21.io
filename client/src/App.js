@@ -16,6 +16,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import NotFound from './components/not-found/NotFound';
+import Profile from './components/dashboard/views/Profiles/profile';
 
 import Bitcoin from './components/bitcoin/Bitcoin';
 import Products from './components/products/Products.js';
@@ -73,6 +74,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard/team" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/dashboard/profile" component={Profile} />
             </Switch>
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />

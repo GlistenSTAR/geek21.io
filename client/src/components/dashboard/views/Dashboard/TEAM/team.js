@@ -4,7 +4,7 @@ class Team extends Component {
   render() {
     return (
      <div>
-       <h1>team</h1>
+       <h1>Component of team</h1>
      </div>
     );
   }

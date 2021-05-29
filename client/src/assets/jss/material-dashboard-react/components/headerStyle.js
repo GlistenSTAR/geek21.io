@@ -40,7 +40,7 @@ const headerStyle = () => ({
     ...defaultFont,
     letterSpacing: "unset",
     lineHeight: "30px",
-    fontSize: "18px",
+    fontSize: "32px",
     borderRadius: "3px",
     textTransform: "none",
     color: "inherit",

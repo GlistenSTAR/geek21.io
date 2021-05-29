@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Link } from 'react-router-dom';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -42,8 +43,14 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
-    console.log("logout")
   };
+  const profileShow = () =>{
+    setOpenProfile(null);
+    // this.props.history.push('/');
+  }
+  const logout = () =>{
+    setOpenProfile(null);
+  }
   return (
     <div>
       <div className={classes.manager}>
@@ -139,20 +146,13 @@ export default function AdminNavbarLinks() {
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
                     <MenuItem
-                      onClick={handleCloseProfile}
                       className={classes.dropdownItem}
                     >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Settings
+                      <Link to="/dashboard/profile" className="profile_sidebar_text">Profile</Link>
                     </MenuItem>
                     <Divider light />
                     <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={logout}
                       className={classes.dropdownItem}
                     >
                       Logout
