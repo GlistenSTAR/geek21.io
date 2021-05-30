@@ -25,9 +25,10 @@ export default function Header(props) {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         name = props.rtlActive ? prop.rtlName : prop.name;
       }
+      name = window.location.href.split('/')[window.location.href.split('/').length-1];
       return null;
     });
-    return name;
+    return name.toUpperCase();;
   }
   const { color } = props;
   const appBarClasses = classNames({
@@ -60,7 +61,7 @@ export default function Header(props) {
 }
 
 Header.propTypes = {
-  color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
+  color: PropTypes.oneOf(["info", "success", "warning", "danger"]),
   rtlActive: PropTypes.bool,
   handleDrawerToggle: PropTypes.func,
   routes: PropTypes.arrayOf(PropTypes.object)

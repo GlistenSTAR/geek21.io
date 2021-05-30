@@ -20,7 +20,7 @@ import styles from "../../../../assets/jss/material-dashboard-react/components/h
 
 const useStyles = makeStyles(styles);
 
-export default function AdminNavbarLinks() {
+export default function AdminNavbarLinks({props}) {
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -46,7 +46,7 @@ export default function AdminNavbarLinks() {
   };
   const profileShow = () =>{
     setOpenProfile(null);
-    // this.props.history.push('/');
+    window.location.href = "/dashboard/profile";
   }
   const logout = () =>{
     setOpenProfile(null);
@@ -148,7 +148,7 @@ export default function AdminNavbarLinks() {
                     <MenuItem
                       className={classes.dropdownItem}
                     >
-                      <Link to="/dashboard/profile" className="profile_sidebar_text">Profile</Link>
+                      <span onClick={profileShow}>Profile</span>
                     </MenuItem>
                     <Divider light />
                     <MenuItem

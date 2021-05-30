@@ -53,6 +53,7 @@ nav.bg-dark{
   color: #17a2b8!important;
   font-size: 32px;
 }
+
 .nav-item{
   padding:5px;
   padding-left: 10px;
@@ -60,9 +61,11 @@ nav.bg-dark{
   transition: 1s;
   font-size: 14px;
 } 
+
 .navbar-dark .navbar-nav .nav-link{
   color:rgb(241, 241, 241)
 }
+
 .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{
   color:#17a2b8;
   border-bottom: 1px solid #17a2b8;
@@ -75,18 +78,23 @@ nav.bg-dark{
   width: 100%;
   z-index: 9999999999999999999;
 }
+
 .contact_mobile{
   position: fixed;
   bottom:5%;
   left:5%;
   z-index: 9999999999999999999;
 }
+
 .brand_img{
   width: auto!important;
 }
+
+
 .profile_sidebar_text{
   color: black;
 }
+
 @media (max-width: 881px){
   .down_botton{
     bottom:8%;
@@ -115,6 +123,7 @@ nav.bg-dark{
     color: white;
   }
 }
+
 @media (max-width: 995px){
   nav .container{
     min-width: 100%!important;
@@ -123,18 +132,22 @@ nav.bg-dark{
     margin-left: 0px;
   }
 }
+
 @media (max-width: 1304px){
   nav .navbar-nav {
     margin-right: 0px;
   }
 }
 
-
 .sidebar_icon{
   width: 25px!important;
   height: 25px!important;
   margin-right: 15px;
 }
-.makeStyles-itemLink-15{
+.makeStyles-itemLink-15, .MuiButtonBase-root {
   display: flex!important;
+}
+
+li.MuiButtonBase-root a:hover, li.MuiButtonBase-root:hover, .MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.makeStyles-dropdownItem-78.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button:hover{
+  color: white!important
 }
