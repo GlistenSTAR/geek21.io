@@ -9,11 +9,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../components/Navbars/Navbar.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 
-import routes from "../routes.js";
 import Profile from '../views/Profiles/profile';
+import routes from "../routes.js";
 
 import styles from "../../../assets/jss/material-dashboard-react/layouts/adminStyle.js";
-
 import bgImage from "../../../assets/img/showcase.jpg";
 import logo from "../logo_white.png";
 
