@@ -48,6 +48,15 @@ class App extends Component {
         <Router>
           <div className="App">
             <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/bitcoin" component={Bitcoin} />
+            <Route exact path="/products" component={Products} />
+            <Route exact path="/network" component={Network} />
+            <Route exact path="/invest" component={Invest} />
+            <Route exact path="/academy" component={Academy} />
+            <Route exact path="/not-found" component={NotFound} />
+
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
@@ -72,15 +81,6 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/dashboard/profile" component={Dashboard} />
             </Switch>
-            
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/bitcoin" component={Bitcoin} />
-            <Route exact path="/products" component={Products} />
-            <Route exact path="/network" component={Network} />
-            <Route exact path="/invest" component={Invest} />
-            <Route exact path="/academy" component={Academy} />
-            <Route exact path="/not-found" component={NotFound} />
             <Footer />
           </div>
         </Router>

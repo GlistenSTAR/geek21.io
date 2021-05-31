@@ -155,7 +155,7 @@ export default function AdminNavbarLinks({props}) {
                     <MenuItem
                       className={classes.dropdownItem}
                     >
-                      <span onClick={profileShow}>Profile</span>
+                      <span className="profile_span" onClick={profileShow}>Profile</span>
                     </MenuItem>
                     <Divider light />
                     <MenuItem

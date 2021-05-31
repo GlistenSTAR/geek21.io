@@ -176,3 +176,6 @@ li.MuiButtonBase-root a:hover, li.MuiButtonBase-root:hover, .MuiButtonBase-root.
   font-size: 16px;
   margin-top: auto ;
 }
+.more_info .col-md-6, .bank_info .col-md-6{
+  margin-top:10px
+}

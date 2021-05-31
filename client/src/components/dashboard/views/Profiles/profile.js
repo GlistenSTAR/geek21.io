@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function profile() {
+const onFocus = (e) =>{
+  e.target.type = 'date';
+}
 
+const onBlur = (e) =>{
+  e.target.type="text";
+}
+
+export default function profile() {
   return (
     <div className="user_profile">
       <div className="general card pt-3 pb-3 pl-3">
@@ -57,8 +64,8 @@ export default function profile() {
             <label htmlFor="birthday">Birthday</label>
             <input
               id="birthday"
-              onFocus="(this.type='date')" 
-              onBlur="(this.type='text')" 
+              onFocus={onFocus} 
+              onBlur={onBlur} 
               placeholder="birthday"
               className="form-control"
               placeholder="Enter Birthday"
@@ -76,7 +83,51 @@ export default function profile() {
         </div>
       </div>
 
-      <div className="security card mt-4 mb-4 pt-3 pb-3 pl-3">
+      <div className="bank_info card mt-4 mb-4 pt-3 pb-3 pl-3 pr-2">
+        <h4>Bank Infomation</h4>
+        <div className="row pt-2 pb-2">
+          <div className="col-md-6">
+            <label htmlFor="bank_name">
+             Bank Name 
+            </label>
+            <input
+              id="bank_name"
+              type="text"
+              className="form-control"
+              placeholder="Enter your Bank Name"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="bank_number">Bank Account Number</label>
+            <input
+              id="bank_number"
+              type="password"
+              className="form-control"
+              placeholder="Enter Bank Number"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="swift_code">Swift Co  de</label>
+            <input
+              id="swift_code"
+              type="text"
+              className="form-control"
+              placeholder="Enter new zipcode"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="type_account">Account Type</label>
+            <input
+              id="type_account"
+              type="text"
+              className="form-control"
+              placeholder="Enter new Direction"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="security card mt-4 mb-4 pt-3 pb-3 pl-3 pr-2">
         <h4>Security Infomation</h4>
         <div className="row pt-2 pb-2">
           <div className="col-md-6">
@@ -102,7 +153,7 @@ export default function profile() {
         </div>
       </div>
 
-      <div className="security card mt-4 mb-4 pt-3 pb-3 pl-3">
+      <div className="more_info card mt-4 mb-4 pt-3 pb-3 pl-3 pr-2">
         <h4>More Infomation</h4>
         <div className="row pt-2 pb-2">
           <div className="col-md-6">
@@ -113,7 +164,7 @@ export default function profile() {
               id="nationality"
               type="text"
               className="form-control"
-              placeholder="Enter your password"
+              placeholder="Enter your Nationality"
             />
           </div>
           <div className="col-md-6">
@@ -122,10 +173,32 @@ export default function profile() {
               id="country"
               type="password"
               className="form-control"
-              placeholder="Enter new password"
+              placeholder="Enter new country"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="zipcode">Postal(Zip) Code</label>
+            <input
+              id="zipcode"
+              type="text"
+              className="form-control"
+              placeholder="Enter new zipcode"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="Direction">Direction</label>
+            <input
+              id="Direction"
+              type="text"
+              className="form-control"
+              placeholder="Enter new Direction"
             />
           </div>
         </div>
+      </div>
+      <div align="right">
+        <button className="btn btn-info btn-lg mr-5">Save</button>
+        <button className="btn btn-default btn-lg mr-5">Cancel</button>
       </div>
     </div>
   )
