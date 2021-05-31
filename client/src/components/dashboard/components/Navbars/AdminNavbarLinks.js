@@ -31,9 +31,11 @@ export default function AdminNavbarLinks({props}) {
       setOpenNotification(event.currentTarget);
     }
   };
+
   const handleCloseNotification = () => {
     setOpenNotification(null);
   };
+
   const handleClickProfile = event => {
     if (openProfile && openProfile.contains(event.target)) {
       setOpenProfile(null);
@@ -41,16 +43,21 @@ export default function AdminNavbarLinks({props}) {
       setOpenProfile(event.currentTarget);
     }
   };
+
   const handleCloseProfile = () => {
     setOpenProfile(null);
   };
+  
   const profileShow = () =>{
     setOpenProfile(null);
     window.location.href = "/dashboard/profile";
   }
-  const logout = () =>{
+
+  const logout = (e) =>{
     setOpenProfile(null);
+    console.log(e.target.name);
   }
+
   return (
     <div>
       <div className={classes.manager}>

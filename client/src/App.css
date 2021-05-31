@@ -151,3 +151,28 @@ nav.bg-dark{
 li.MuiButtonBase-root a:hover, li.MuiButtonBase-root:hover, .MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.makeStyles-dropdownItem-78.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button:hover{
   color: white!important
 }
+
+.user_profile img.user_avartar{
+  width: 70px!important;
+  height: 70px;
+}
+.user_profile .card{
+  box-shadow: rgb(0 0 0 / 75%) -2px -6px 14px -6px;
+}
+.user_profile .custom-file{
+  font-size: medium;
+}
+.user_profile .col-md-6 label{
+  font-size: 13px!important;
+}
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "֍";
+}
+.user_profile .row.mt-2.mb-2.pl-2.pr-2 .col-md-6{
+  margin-top:10px
+}
+.user_profile .row.mt-2.mb-2.pl-2.pr-2 .col-md-6 span{
+  color: red;
+  font-size: 16px;
+  margin-top: auto ;
+}

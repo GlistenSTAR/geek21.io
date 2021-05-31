@@ -24,8 +24,9 @@ export default function Header(props) {
     props.routes.map(prop => {
       if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
         name = props.rtlActive ? prop.rtlName : prop.name;
+      } else{
+        name = window.location.href.split('/')[window.location.href.split('/').length-1];
       }
-      name = window.location.href.split('/')[window.location.href.split('/').length-1];
       return null;
     });
     return name.toUpperCase();;

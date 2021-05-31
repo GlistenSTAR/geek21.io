@@ -27,10 +27,12 @@ import './App.css';
 
 // Check for token
 if (localStorage.jwtToken) {
+  // Set auth token header auth
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
   store.dispatch(setCurrentUser(decoded));
 
+  // Check for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
@@ -78,7 +80,6 @@ class App extends Component {
             <Route exact path="/network" component={Network} />
             <Route exact path="/invest" component={Invest} />
             <Route exact path="/academy" component={Academy} />
-
             <Route exact path="/not-found" component={NotFound} />
             <Footer />
           </div>
