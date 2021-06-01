@@ -167,7 +167,7 @@ li.MuiButtonBase-root a:hover, li.MuiButtonBase-root:hover, .MuiButtonBase-root.
 }
 .custom-file-input:lang(en)~.custom-file-label::after {
   content: "֍";
-}
+} 
 .user_profile .row.mt-2.mb-2.pl-2.pr-2 .col-md-6{
   margin-top:10px
 }
@@ -178,4 +178,18 @@ li.MuiButtonBase-root a:hover, li.MuiButtonBase-root:hover, .MuiButtonBase-root.
 }
 .more_info .col-md-6, .bank_info .col-md-6{
   margin-top:10px
+}
+.equal_button button{
+  width: 200px;
+}
+.btn-default{
+  border-color: #6c757d;
+}
+
+
+header button:focus{
+  outline:none!important;
+}
+.MuiListItemText-root.makeStyles-itemText-18:hover{
+  text-decoration: none!important;
 }

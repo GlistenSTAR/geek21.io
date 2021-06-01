@@ -196,9 +196,9 @@ export default function profile() {
           </div>
         </div>
       </div>
-      <div align="right">
-        <button className="btn btn-info btn-lg mr-5">Save</button>
-        <button className="btn btn-default btn-lg mr-5">Cancel</button>
+      <div align="right" className="equal_button">
+        <button className="btn btn-info mr-5"> Save </button>
+        <button className="btn btn-default mr-5"> Cancel</button>
       </div>
     </div>
   )

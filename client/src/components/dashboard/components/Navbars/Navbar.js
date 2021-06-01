@@ -39,7 +39,7 @@ export default function Header(props) {
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
-          <Button color="transparent" className={classes.title+` btn-lg`}>
+          <Button color="transparent" className={classes.title}>
             {makeBrand()}
           </Button>
         </div>

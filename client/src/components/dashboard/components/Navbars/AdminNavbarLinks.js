@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { Link } from 'react-router-dom';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -20,7 +19,7 @@ import styles from "../../../../assets/jss/material-dashboard-react/components/h
 
 const useStyles = makeStyles(styles);
 
-export default function AdminNavbarLinks({props}) {
+export default function AdminNavbarLinks() {
   const classes = useStyles();
   const [openNotification, setOpenNotification] = React.useState(null);
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -55,7 +54,8 @@ export default function AdminNavbarLinks({props}) {
 
   const logout = (e) =>{
     setOpenProfile(null);
-    console.log(e.target.name);
+    localStorage.removeItem('jwtToken');
+    window.location.href="/"
   }
 
   return (
