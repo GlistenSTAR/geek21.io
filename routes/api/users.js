@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-// @route   GET api/users/login
+// @route   POST api/users/login
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.post('/login', (req, res) => {
@@ -121,6 +121,45 @@ router.get(
       name: req.user.name,
       email: req.user.email
     });
+  }
+);
+
+// @route   POST api/users/profile
+// @desc    Return current user profile
+// @access  Private
+router.post(
+  '/user_profile',
+  (req, res) => {
+    User.findById(req.body.id)
+      .then(user=>{
+        res.json(user);
+      });
+  }
+);
+
+// @route   POST api/users/save_profile
+// @desc    Save current user profile
+// @access  Private
+router.post(
+  '/save_profile',
+  (req, res) => {
+    console.log(req.body.email);
+    User.findOne({email: req.body.email})
+    .then(user=>{
+      user.first_name = req.body.first_name;
+      user.last_name = req.body.last_name;
+      user.birthday = req.body.birthday;
+      user.phone_number= req.body.phone_number;
+      user.nationality= req.body.nationality;
+      user.country= req.body.country;
+      user.zipcode= req.body.zipcode;
+      user.bank_name= req.body.bank_name;
+      user.bank_number= req.body.bank_number;
+      user.swift_code= req.body.swift_code;
+      user.account_type= req.body.account_type;
+      user.save();
+    })
+    .catch(err=>console.log(err))
   }
 );
 

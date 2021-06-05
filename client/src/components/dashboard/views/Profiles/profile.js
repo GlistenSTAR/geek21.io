@@ -1,30 +1,38 @@
-import React, {useState, useEffect } from 'react'
-import { useSelector } from "react-redux";
+import React, {useState, useEffect, useContext } from 'react'
+import { ReactReduxContext } from 'react-redux'
+import axios from 'axios'
 
-const profile = () => {
+export default function profile() {
+  const { store } = useContext(ReactReduxContext)
+  const { getState, dispatch, subscribe } = store
+  const [currentUser, setCurrentUser] = useState([]);
+  let status = getState();
+  let current_id = {id : status.auth.user.id};
   useEffect(()=>{
-    useSelector(state => {
-      console.log(state.auth.user);
-    });  
-  });
+    axios.post("/api/users/user_profile", current_id)
+    .then((user)=>{
+      setCurrentUser(user.data);
+    });
+  },[]);
 
   let [newData, setData] = useState({
-    first_name: '',
-    last_name: '',
-    email: '',
-    birthday: '',
-    phone_number: '',
+    name: status.auth.user.name,
+    first_name: currentUser.first_name,
+    last_name: currentUser.last_name,
+    email: status.auth.user.email,
+    birthday: currentUser.birthday,
+    phone_number: currentUser.phone_number,
     current_password: '',
     new_password: '',
-    nationality: '',
-    country: '',
-    zipcode: '',
-    passport_id: '',
-    passport_services: '',
-    bank_name: '',
-    bank_number: '',
-    swift_code: '',
-    account_type: ''
+    nationality: currentUser.nationality,
+    country: currentUser.country,
+    zipcode: currentUser.zipcode,
+    passport_id: currentUser.passport_id,
+    passport_services: currentUser.passport_services,
+    bank_name: currentUser.bank_name,
+    bank_number: currentUser.bank_name,
+    swift_code: currentUser.swift_code,
+    account_type: currentUser.account_type
   });
 
   let handleChange = (e) => {
@@ -36,8 +44,11 @@ const profile = () => {
   
   const saveData = (e) =>{
     e.preventDefault();
-    console.log("submitted");
-    console.log(newData);
+    axios.post("/api/users/save_profile", newData)
+    .then((user)=>{
+      // setCurrentUser(user.data);
+    });
+    // console.log(newData);
   }
 
   const onFocus = (e) =>{
@@ -54,7 +65,14 @@ const profile = () => {
         <h4>General Infomation</h4>
         <div className="row">
           <div className="col-md-4" style={{display:'flex', alignItems:'center'}}>
-            <img src="../user_avatars/ASDFJASKDLFJCEASDF1ASDF.png" className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>
+            {currentUser.photo?
+              (<img src={`../user_avatars/`+currentUser.avartar} className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>)
+              :
+              currentUser.avatar?
+                (<img src={currentUser.avatar} className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>)
+                :
+                (<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/120px-User-avatar.svg.png" className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>)
+            }
             <div className="custom-file ml-2" style={{ verticalAlign:'middle'}}>
               <input
                 type="file"
@@ -74,25 +92,16 @@ const profile = () => {
 
         <div className="row mt-2 mb-2 pl-2 pr-2">
           <div className="col-md-6">
-            <label htmlFor="formFirst">First name <span>*</span></label>
+            <label htmlFor="emailAddress">UserName <span>*</span></label>
             <input
-              id="formFirst"
+              id="emailAddress"
               type="text"
               className="form-control"
-              placeholder="First name"
-              name="first_name"
+              placeholder="Enter Your Name"
               onChange={handleChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="formLast">Last name</label>
-            <input
-              id="formLast"
-              type="text"
-              className="form-control"
-              placeholder="Last name"
-              name="last_name"
-              onChange={handleChange}
+              name="name"
+              defaultValue={currentUser? currentUser.name:''}
+              disabled={true}
             />
           </div>
           <div className="col-md-6">
@@ -104,8 +113,35 @@ const profile = () => {
               placeholder="Enter your email"
               onChange={handleChange}
               name="email"
+              defaultValue={currentUser? currentUser.email:''}
+              disabled={true}
             />
           </div>
+          <div className="col-md-6">
+            <label htmlFor="formFirst">First name</label>
+            <input
+              id="formFirst"
+              type="text"
+              className="form-control"
+              placeholder="First name"
+              name="first_name"
+              onChange={handleChange}
+              defaultValue={currentUser.first_name? currentUser.first_name:''}
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="formLast">Last name</label>
+            <input
+              id="formLast"
+              type="text"
+              className="form-control"
+              placeholder="Last name"
+              name="last_name"
+              onChange={handleChange}
+              defaultValue={currentUser.last_name? currentUser.last_name:''}
+            />
+          </div>
+          
           <div className="col-md-6">
             <label htmlFor="birthday">Birthday</label>
             <input
@@ -117,6 +153,7 @@ const profile = () => {
               placeholder="Enter Birthday"
               onChange={handleChange}
               name="birthday"
+              defaultValue={currentUser.birthday? currentUser.birthday:''}
             />
           </div>
           <div className="col-md-6">
@@ -128,6 +165,7 @@ const profile = () => {
               placeholder="Enter phone number"
               onChange={handleChange}
               name="phone_number"
+              defaultValue={currentUser.phone_number? currentUser.phone_number:''}
             />
           </div>
         </div>
@@ -177,6 +215,7 @@ const profile = () => {
               placeholder="Enter your Nationality"
               onChange={handleChange}
               name="nationality"
+              defaultValue={currentUser.nationality? currentUser.nationality:''}
             />
           </div>
           <div className="col-md-6">
@@ -188,6 +227,7 @@ const profile = () => {
               placeholder="Enter country"
               onChange={handleChange}
               name="country"
+              defaultValue={currentUser.country? currentUser.country:''}
             />
           </div>
           <div className="col-md-6">
@@ -199,6 +239,7 @@ const profile = () => {
               placeholder="Enter zipcode"
               onChange={handleChange}
               name="zipcode"
+              defaultValue={currentUser.zipcode? currentUser.zipcode:''}
             />
           </div>
           <div className="col-md-6">
@@ -210,6 +251,7 @@ const profile = () => {
               placeholder="Enter Direction"
               onChange={handleChange}
               name="direction"
+              defaultValue={currentUser.direction? currentUser.direction:''}
             />
           </div>
           <div className="col-md-6">
@@ -221,6 +263,7 @@ const profile = () => {
               placeholder="Enter passport ID"
               onChange={handleChange}
               name="passport_id"
+              defaultValue={currentUser.passport_id? currentUser.passport_id:''}
             />
           </div>
           <div className="col-md-6">
@@ -232,6 +275,7 @@ const profile = () => {
               placeholder="Enter basic services"
               onChange={handleChange}
               name="passport_services"
+              defaultValue={currentUser.passport_services? currentUser.passport_services:''}
             />
           </div>
         </div>
@@ -251,6 +295,7 @@ const profile = () => {
               placeholder="Enter your Bank Name"
               onChange={handleChange}
               name="bank_name"
+              defaultValue={currentUser.bank_name? currentUser.bank_name:''}
             />
           </div>
           <div className="col-md-6">
@@ -262,6 +307,7 @@ const profile = () => {
               placeholder="Enter Bank Number"
               onChange={handleChange}
               name="bank_number"
+              defaultValue={currentUser.bank_number? currentUser.bank_number:''}
             />
           </div>
           <div className="col-md-6">
@@ -273,6 +319,7 @@ const profile = () => {
               placeholder="Enter swift code"
               onChange={handleChange}
               name="swift_code"
+              defaultValue={currentUser.swift_code? currentUser.swift_code:''}
             />
           </div>
           <div className="col-md-6">
@@ -284,6 +331,7 @@ const profile = () => {
               placeholder="Enter account type"
               onChange={handleChange}
               name="account_type"
+              defaultValue={currentUser.account_type? currentUser.account_type:''}
             />
           </div>
         </div>
@@ -297,4 +345,3 @@ const profile = () => {
   )
 }
 
-export default profile;

@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 
 class Landing extends Component {
   constructor(props){
-    super();
+    super(props);
     this.state ={
       show: true
     }
