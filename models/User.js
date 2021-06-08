@@ -46,6 +46,9 @@ const UserSchema = new Schema({
   passport_id_image: {
     type: String
   },
+  direction: {
+    type: String
+  },
   passport_services_image: {
     type: String
   },
@@ -63,6 +66,10 @@ const UserSchema = new Schema({
   },
   account_type: {
     type: String
+  },
+  accept:{
+    type: Number,
+    default: 0
   }
 });
 

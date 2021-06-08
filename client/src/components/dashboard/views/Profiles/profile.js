@@ -1,13 +1,16 @@
 import React, {useState, useEffect, useContext } from 'react'
 import { ReactReduxContext } from 'react-redux'
 import axios from 'axios'
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 export default function profile() {
   const { store } = useContext(ReactReduxContext)
-  const { getState, dispatch, subscribe } = store
+  const { getState } = store
   const [currentUser, setCurrentUser] = useState([]);
+  
   let status = getState();
-  let current_id = {id : status.auth.user.id};
+  let current_id = { id : status.auth.user.id };
+
   useEffect(()=>{
     axios.post("/api/users/user_profile", current_id)
     .then((user)=>{
@@ -35,20 +38,35 @@ export default function profile() {
     account_type: currentUser.account_type
   });
 
+  let [avatarImage, setAvatar] = useState('');
+  let [avatarPrviewUrl, setAvartarUrl] = useState('');
+
   let handleChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    newData[name] = value;
-    setData(newData);
+    currentUser[name] = value;
+    setData(currentUser);
   }
   
   const saveData = (e) =>{
     e.preventDefault();
     axios.post("/api/users/save_profile", newData)
     .then((user)=>{
-      // setCurrentUser(user.data);
+      setCurrentUser(user.data);
     });
+    console.log(avatarImage);
     // console.log(newData);
+  }
+
+  let avatarUpload = (e) => {
+      e.preventDefault();
+      let reader = new FileReader();
+      let file = e.target.files[0];
+      reader.onloadend = () => {
+        setAvatar(file);
+        setAvartarUrl(reader.result);
+      }
+      reader.readAsDataURL(file)
   }
 
   const onFocus = (e) =>{
@@ -60,12 +78,16 @@ export default function profile() {
   }
 
   return (
-    <form className="user_profile" onSubmit={saveData}>
+    <form className="user_profile" onSubmit={saveData} autoComplete="off">
       <div className="general card pt-3 pb-3 pl-3">
         <h4>General Infomation</h4>
         <div className="row">
           <div className="col-md-4" style={{display:'flex', alignItems:'center'}}>
-            {currentUser.photo?
+            { avatarPrviewUrl ? (
+              <img src={avatarPrviewUrl} className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>
+             )
+              :
+              currentUser.photo?
               (<img src={`../user_avatars/`+currentUser.avartar} className="img-thumbnail rounded-circle user_avartar" alt="avartar"/>)
               :
               currentUser.avatar?
@@ -79,6 +101,7 @@ export default function profile() {
                 className="custom-file-input"
                 id="fileUpload"
                 name="avartar"
+                onChange={avatarUpload}
               />
               <label
                 className="custom-file-label"
@@ -89,12 +112,30 @@ export default function profile() {
             </div>
           </div>
         </div>
-
+        {/* <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          /> */}
         <div className="row mt-2 mb-2 pl-2 pr-2">
           <div className="col-md-6">
-            <label htmlFor="emailAddress">UserName <span>*</span></label>
+            <label htmlFor="userName">UserName <span>*</span></label>
             <input
-              id="emailAddress"
+              id="userName"
               type="text"
               className="form-control"
               placeholder="Enter Your Name"
@@ -104,6 +145,7 @@ export default function profile() {
               disabled={true}
             />
           </div>
+          
           <div className="col-md-6">
             <label htmlFor="emailAddress">Email <span>*</span></label>
             <input
