@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
+import TradingChart from '../../components/TradingChart/TradingChart';
 
 export default function Dashboard() {
+  const [tab, setTab] = useState('BINANCE:BTCUSD');
+
   return (
     <div>
-      <h1>Component of Dashboard</h1>
+      <TradingChart symbol={tab} /> 
     </div>
   );
 }

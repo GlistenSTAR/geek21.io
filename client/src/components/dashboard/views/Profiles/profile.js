@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext } from 'react'
 import { ReactReduxContext } from 'react-redux'
 import axios from 'axios'
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 export default function profile() {
   const { store } = useContext(ReactReduxContext)
@@ -50,18 +49,33 @@ export default function profile() {
   
   const saveData = (e) =>{
     e.preventDefault();
-    axios.post("/api/users/save_profile", newData)
+    let formData = new FormData();	
+
+    formData.append("data", newData);
+    if(avatarImage){
+      formData.append("file", avatarImage);
+    }
+    console.log(avatarImage);
+    axios.post(
+      "/api/users/save_profile", 
+      formData,  
+      {
+        withCredentials: true, 
+        headers: {
+          "Access-Control-Allow-Origin": "*", 
+          'Content-Type': 'multipart/form-data'
+        } 
+      })
     .then((user)=>{
       setCurrentUser(user.data);
-    });
-    console.log(avatarImage);
-    // console.log(newData);
+    }).catch(err=>console.log(err));
   }
 
   let avatarUpload = (e) => {
       e.preventDefault();
       let reader = new FileReader();
       let file = e.target.files[0];
+      // console.log(e.target.files);
       reader.onloadend = () => {
         setAvatar(file);
         setAvartarUrl(reader.result);
