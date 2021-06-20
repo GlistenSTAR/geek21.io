@@ -122,6 +122,16 @@ nav.bg-dark{
   .profile_sidebar_text{
     color: white;
   }
+  .makeStyles-container-88 {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .dashboard .balances .col-md-4{
+    margin-top: 20px;
+  }
+  .dashboard .display-4.text-primary.mt-2.mb-4{
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 995px){
@@ -199,5 +209,19 @@ header button:focus{
   padding: 5px 5px!important;
 }
 .chart_view{
-  box-shadow: rgb(0 0 0 / 75%) -2px -6px 14px -6px;
+  box-shadow: rgb(0 0 0 / 75%) -11px 3px 14px -6px
+}
+
+.dashboard .deposit, .dashboard .withdraw{
+  width: 100px;
+}
+.dashboard .deposit{
+  background: #26de81;
+  color: #ffffff;
+  box-shadow: 0px 0px 15px 0px #26de81ad;
+}
+.dashboard .withdraw{
+  background: #ff231f;
+  box-shadow: 0px 0px 15px 0px #ff231fad;
+  color: #ffffff;
 }
