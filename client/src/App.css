@@ -225,3 +225,20 @@ header button:focus{
   box-shadow: 0px 0px 15px 0px #ff231fad;
   color: #ffffff;
 }
+.dashboard .more_withdraw{
+  width: 200px;
+  background: #ff231f;
+  box-shadow: 0px 0px 15px 0px #ff231fad;
+  color: #ffffff;
+}
+.dashboard .alert-info{
+  position: fixed;
+  right: 30px;
+  top:50px;
+  /* animation-name: example;
+  animation-duration: 10s; */
+}
+/* @keyframes example {
+  from{display: none;}
+  to{display: block;}
+} */

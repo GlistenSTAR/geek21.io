@@ -12,6 +12,7 @@ const validateLoginInput = require('../../validation/login');
 
 // Load User model
 const User = require('../../models/User');
+const isEmpty = require('../../validation/is-empty');
 
 // @route   GET api/users/test
 // @desc    Tests users route
@@ -143,49 +144,53 @@ router.post(
 router.post(
   '/save_profile',
   (req, res) => {
-    console.log(req.body.file);
-    // let newUser = {}, message='';
-    // newUser.first_name = req.body.first_name;
-    // newUser.last_name = req.body.last_name;
-    // newUser.birthday = req.body.birthday;
-    // newUser.phone_number= req.body.phone_number;
-    // newUser.nationality= req.body.nationality;
-    // newUser.country= req.body.country;
-    // newUser.direction= req.body.direction;
-    // newUser.zipcode= req.body.zipcode;
-    // newUser.bank_name= req.body.bank_name;
-    // newUser.bank_number= req.body.bank_number;
-    // newUser.swift_code= req.body.swift_code;
-    // newUser.account_type= req.body.account_type;
-    // // newUser.password = req.body.new_password;
-    // console.log(req.body);
-    // User.findOne({email: req.body.email})
-    // .then((user) => {
-    //   bcrypt.compare(req.body.current_password, user.password)
-    //   .then(isMatch => {
-    //     if (isMatch) {
-    //       // console.log("Password is matched");
-    //       bcrypt.genSalt(10, (err, salt) => {
-    //         bcrypt.hash(req.body.new_password, salt, (err, hash) => {
-    //           if (err) throw err;
-    //           newUser.password = hash;
-    //           console.log(hash)
-    //         });
-    //       });
-    //     } else {
-    //       message = "Orignal password is wrong!"
-    //     }
-    //   })
-    // });
-
-    // User.findOneAndUpdate(
-    //   {email: req.body.email},
-    //   { $set: newUser },
-    //   { new: true }
-    // ).then(user=>{
-    //   res.json(user);
-    // })
-    // .catch(err=>console.log(err))
+    // console.log(req.body.file);
+    let newUser = {}, message='';
+    newUser.first_name = req.body.first_name;
+    newUser.last_name = req.body.last_name;
+    newUser.birthday = req.body.birthday;
+    newUser.phone_number= req.body.phone_number;
+    newUser.nationality= req.body.nationality;
+    newUser.country= req.body.country;
+    newUser.direction= req.body.direction;
+    newUser.zipcode= req.body.zipcode;
+    newUser.bank_name= req.body.bank_name;
+    newUser.bank_number= req.body.bank_number;
+    newUser.swift_code= req.body.swift_code;
+    newUser.account_type= req.body.account_type;
+    
+    User.findOne({email: req.body.email})
+    .then((user) => {
+        req_current_password=!isEmpty(req.body.current_password)?req.body.current_password:'';
+        bcrypt.compare(req_current_password, user.password)
+        .then(isMatch => {
+          if (isMatch) {
+            console.log("Password is matched");
+            bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(req.body.new_password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                User.updateOne(
+                  {email: req.body.email},
+                  { $set: newUser }
+                ).then(user=>{
+                  res.json({msg : "Profile is changed. Password is changed successfully"});
+                })
+                .catch(err=>console.log(err))
+              });
+            });
+          } else {
+            message = "Password is not changed"
+            User.updateOne(
+              {email: req.body.email},
+              { $set: newUser }
+            ).then(user=>{
+              res.json({msg: "Profile is changed. Password is not changed"});
+            })
+            .catch(err=>console.log(err))
+          }
+        }).catch(err=>console.log(err));
+    })
   }
 );
 

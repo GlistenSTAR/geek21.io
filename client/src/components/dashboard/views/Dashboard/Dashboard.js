@@ -12,7 +12,7 @@ export default function Dashboard() {
   return (
     <div>
       <div className="chart_view p-3">
-        <div className="display-4 mt-2 mb-4" align="center" style={{color:'grey'}}>
+        <div className="display-4 mt-2 mb-4 text-primary" align="center">
           Welcome {status.auth.user.name}
         </div>
         <div className="row balances mb-4">
@@ -38,8 +38,13 @@ export default function Dashboard() {
       </div>
       <TradingChart symbol={tab} /> 
       <div className="chart_view p-3 next_month_payment" align="center">
-        <label className="display-4 text-primary">Next Month payment</label>
-        <div>1200</div>
+        <h1 className="text-primary">Next Month payment</h1>
+        <div className="row">
+          <div className="col-sm-12 col-12" align="center">
+            <label className="" style={{fontSize:'32px', color:'goldenrod'}}>200USD</label><br/>
+            <button className="btn more_withdraw ml-4">More Deposit</button>
+          </div>
+        </div>
       </div>
     </div>
   );

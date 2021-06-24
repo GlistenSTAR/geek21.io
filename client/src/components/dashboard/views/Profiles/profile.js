@@ -39,6 +39,7 @@ export default function profile() {
 
   let [avatarImage, setAvatar] = useState('');
   let [avatarPrviewUrl, setAvartarUrl] = useState('');
+  let [message, setMessage] = useState('');
 
   let handleChange = (e) => {
     let name = e.target.name;
@@ -49,25 +50,15 @@ export default function profile() {
   
   const saveData = (e) =>{
     e.preventDefault();
-    let formData = new FormData();	
-
-    formData.append("data", newData);
-    if(avatarImage){
-      formData.append("file", avatarImage);
-    }
-    console.log(avatarImage);
     axios.post(
       "/api/users/save_profile", 
-      formData,  
-      {
-        withCredentials: true, 
-        headers: {
-          "Access-Control-Allow-Origin": "*", 
-          'Content-Type': 'multipart/form-data'
-        } 
-      })
-    .then((user)=>{
-      setCurrentUser(user.data);
+      currentUser,  
+    ).then((response)=>{
+      setMessage(response.data.msg);
+      // console.log(res.data.msg);
+      setInterval(()=>{
+        setMessage('')
+      }, 5000);
     }).catch(err=>console.log(err));
   }
 
@@ -75,7 +66,6 @@ export default function profile() {
       e.preventDefault();
       let reader = new FileReader();
       let file = e.target.files[0];
-      // console.log(e.target.files);
       reader.onloadend = () => {
         setAvatar(file);
         setAvartarUrl(reader.result);
@@ -126,25 +116,6 @@ export default function profile() {
             </div>
           </div>
         </div>
-        {/* <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
-          /> */}
         <div className="row mt-2 mb-2 pl-2 pr-2">
           <div className="col-md-6">
             <label htmlFor="userName">UserName <span>*</span></label>
@@ -290,7 +261,7 @@ export default function profile() {
             <label htmlFor="zipcode">Postal(Zip) Code</label>
             <input
               id="zipcode"
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Enter zipcode"
               onChange={handleChange}
@@ -397,6 +368,11 @@ export default function profile() {
         <button className="btn btn-info mr-5" type="submit"> Save </button>
         <button className="btn btn-default mr-5"> Cancel</button>
       </div>
+      {message ? (
+          <div class="alert alert-info">
+            <strong>Info!{' '}</strong>{message}</div>
+      )
+      :''}
     </form>
   )
 }
